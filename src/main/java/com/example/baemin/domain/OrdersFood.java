@@ -19,4 +19,11 @@ public class OrdersFood {
     @ManyToOne
     private Orders orders;
 
+    public OrdersFood(Food food, Integer quantity, Orders orders) {
+        name = food.getName();
+        price = food.getPrice();
+        this.quantity = quantity;
+        this.orders = orders;
+    }
+
 }

@@ -11,24 +11,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 public class OrdersController {
 
-    private final OrdersService orderService;
+    private final OrdersService ordersService;
 
     @PostMapping("/order/request")
-    public ResponseEntity<OrdersResponseDto> postOrder(@RequestBody OrdersRequestDto orderRequestDto) {
-        OrdersResponseDto orderResponseDto = orderService.placeOrder(orderRequestDto);
-        return new ResponseEntity<>(orderResponseDto, HttpStatus.OK);
+    public ResponseEntity<OrdersResponseDto> postOrder(@RequestBody @Valid OrdersRequestDto ordersRequestDto) {
+        OrdersResponseDto ordersResponseDto = ordersService.placeOrder(ordersRequestDto);
+        return new ResponseEntity<>(ordersResponseDto, HttpStatus.OK);
     }
 
     @GetMapping("/orders")
     public ResponseEntity<List<OrdersResponseDto>> getOrders() {
-        List<OrdersResponseDto> orderResponseDtoList = orderService.getOrders();
-        return new ResponseEntity<>(orderResponseDtoList, HttpStatus.OK);
+        List<OrdersResponseDto> ordersResponseDtoList = ordersService.getOrders();
+        return new ResponseEntity<>(ordersResponseDtoList, HttpStatus.OK);
     }
 
 }
