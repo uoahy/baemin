@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Validated
@@ -20,7 +21,7 @@ public class FoodController {
     private final FoodService foodService;
 
     @PostMapping("/restaurant/{restaurantId}/food/register")
-    public ResponseEntity<List<FoodResponseDto>> postFood(@PathVariable Long restaurantId, @RequestBody @Valid List<FoodRequestDto> foodRequestDtoList) {
+    public ResponseEntity<List<FoodResponseDto>> postFood(@PathVariable Long restaurantId, @RequestBody @NotNull @Valid List<FoodRequestDto> foodRequestDtoList) {
         List<FoodResponseDto> foodResponseDtoList = foodService.registerFoods(foodRequestDtoList, restaurantId);
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

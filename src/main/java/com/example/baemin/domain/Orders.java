@@ -24,13 +24,6 @@ public class Orders {
     private Integer deliveryFee;
     private Integer totalPrice;
 
-    public Orders(Restaurant restaurant, List<OrdersFood> ordersFoods, Integer orderPrice) {
-        this.restaurant = restaurant;
-        this.ordersFoods = ordersFoods;
-        deliveryFee = restaurant.getDeliveryFee();
-        totalPrice = orderPrice + deliveryFee;
-    }
-
     public Orders(Restaurant restaurant) {
         this.restaurant = restaurant;
         ordersFoods = new ArrayList<>();
